@@ -13,6 +13,9 @@ class Settings(BaseSettings):
 
     # Database
     SQLALCHEMY_DATABASE_URI: str
+    
+    # new for ingestion & vector db
+    USDA_API_KEY: str
 
     class Config:
         env_file = ".env"

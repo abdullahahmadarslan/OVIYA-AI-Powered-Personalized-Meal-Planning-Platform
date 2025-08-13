@@ -1,6 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from app.core.config import settings
+from motor.motor_asyncio import AsyncIOMotorClient
+from app.core.config import settings
+
 
 engine = create_engine(
     settings.SQLALCHEMY_DATABASE_URI,
@@ -19,3 +22,5 @@ def get_db():
         yield db
     finally:
         db.close()
+        
+        
