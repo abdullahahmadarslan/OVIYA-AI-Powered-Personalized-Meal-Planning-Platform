@@ -18,6 +18,10 @@ class Settings(BaseSettings):
     USDA_API_KEY: str
     OPENAI_API_KEY: str
 
+    # Agent Configuration
+    AGENT_MAX_ITERATIONS: int = 20
+    AGENT_TEMPERATURE: float = 0.0
+    AGENT_MODEL: str = "gpt-4o"
 
     class Config:
         env_file = ".env"
