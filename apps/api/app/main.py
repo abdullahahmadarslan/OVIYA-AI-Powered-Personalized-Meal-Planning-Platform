@@ -19,7 +19,15 @@ def create_app() -> FastAPI:
             print("Agent Started!")
         except Exception as e:
             print(f"Error initializing meal planning agent: {e}")
-    
+
+        # Initialize food analysis service
+        try:
+            from app.core.food_analysis import get_food_analysis_service
+            get_food_analysis_service()
+            print("Food Analysis Service Started!")
+        except Exception as e:
+            print(f"Error initializing food analysis service: {e}")
+            
     return app
 
 app = create_app()
