@@ -16,13 +16,8 @@ class Settings(BaseSettings):
     
     # new for ingestion & vector db
     USDA_API_KEY: str
-    OPENAI_API_KEY:str
-    
-    
-    # Agent Configuration
-    AGENT_MAX_ITERATIONS: int = 20
-    AGENT_TEMPERATURE: float = 0.0
-    AGENT_MODEL: str = "gpt-4o"
+    OPENAI_API_KEY: str
+
 
     class Config:
         env_file = ".env"
