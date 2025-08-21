@@ -16,10 +16,7 @@ class Settings(BaseSettings):
     
     # new for ingestion & vector db
     USDA_API_KEY: str
-    
-    # Meal Planning Agent Settings
     OPENAI_API_KEY:str
-    USDA_API_KEY: str
     
     
     # Agent Configuration
