@@ -4,9 +4,7 @@ from app.api.v1 import meal_planning
 api_router = APIRouter()
 
 # Auth routes
-api_router.include_router(auth.router,
-                          prefix="/auth", 
-                          tags=["auth"])
+api_router.include_router(auth.router, prefix="/auth", tags=["auth"])
 
 # Meal planning routes
 api_router.include_router(
