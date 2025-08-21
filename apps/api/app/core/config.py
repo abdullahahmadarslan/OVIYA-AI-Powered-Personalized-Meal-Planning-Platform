@@ -16,6 +16,8 @@ class Settings(BaseSettings):
     
     # new for ingestion & vector db
     USDA_API_KEY: str
+    OPENAI_API_KEY: str
+
 
     class Config:
         env_file = ".env"

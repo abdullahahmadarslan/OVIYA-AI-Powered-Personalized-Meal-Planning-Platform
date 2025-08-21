@@ -1,5 +1,5 @@
-from pydantic import BaseModel, EmailStr
-from typing import List, Literal
+from pydantic import BaseModel, EmailStr, Field
+from typing import List, Literal, Dict, Optional
 
 class UserBase(BaseModel):
     email: EmailStr
@@ -35,3 +35,4 @@ class Token(BaseModel):
 class TokenPayload(BaseModel):
     sub: str | None = None
     exp: int | None = None
+

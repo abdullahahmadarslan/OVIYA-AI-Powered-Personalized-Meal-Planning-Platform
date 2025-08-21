@@ -3,6 +3,8 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from app.core.config import settings
 from motor.motor_asyncio import AsyncIOMotorClient
 from app.core.config import settings
+from motor.motor_asyncio import AsyncIOMotorClient
+
 
 
 engine = create_engine(
