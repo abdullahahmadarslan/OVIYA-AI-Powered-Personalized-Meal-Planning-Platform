@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from app.api.v1 import auth
 from app.api.v1 import shopping
-from app.api.v1 import meal_planning
+from app.api.v1 import meal_planning, food_analysis
 
 api_router = APIRouter()
 
@@ -16,4 +16,11 @@ api_router.include_router(
     meal_planning.router, 
     prefix="/meal-planning", 
     tags=["meal-planning"]
+)
+
+# Food analysis routes
+api_router.include_router(
+    food_analysis.router, 
+    prefix="/food-analysis", 
+    tags=["food-analysis"]
 )

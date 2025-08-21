@@ -22,6 +22,14 @@ class Settings(BaseSettings):
     AGENT_MAX_ITERATIONS: int = 20
     AGENT_TEMPERATURE: float = 0.0
     AGENT_MODEL: str = "gpt-4o"
+    
+    # Food Analysis Service Settings
+    GEMINI_API_KEY: str = "AIzaSyAgR7H75RiWVAqoUAxsJL6j0wj8jVBZ60o"
+    
+    # Model Configuration
+    VISION_MODEL_NAME: str = "Salesforce/blip-image-captioning-large"
+    VISION_MODEL_FALLBACK: str = "Salesforce/blip-image-captioning-base"
+    GEMINI_MODEL_NAME: str = "gemini-2.5-flash"
 
     class Config:
         env_file = ".env"
