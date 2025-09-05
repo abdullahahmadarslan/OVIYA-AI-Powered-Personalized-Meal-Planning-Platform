@@ -42,46 +42,186 @@ OVIYA is an intelligent, full-stack meal planning application that leverages cut
 ## 🏗️ Technical Architecture
 
 ### Backend (FastAPI)
+
 ```
-apps/api/
+api/
 ├── app/
-│   ├── api/v1/           # API routes and endpoints
-│   │   ├── auth.py       # Authentication endpoints
-│   │   ├── meal_planning.py  # Meal planning API
-│   │   ├── food_analysis.py  # Food image analysis
-│   │   ├── shopping.py   # Shopping list generation
-│   │   └── recipe.py     # Recipe management
-│   ├── core/             # Core business logic
-│   │   ├── meal_agent.py # LangChain agent for meal planning
-│   │   ├── food_analysis.py  # AI food analysis service
-│   │   ├── security.py   # JWT and password security
-│   │   └── config.py     # Application configuration
-│   ├── domains/          # Domain models and services
-│   │   ├── users/        # User management
-│   │   └── meals/        # Meal domain logic
-│   ├── db/               # Database configuration
-│   └── deps/             # Dependency injection
-└── main.py              # FastAPI application entry point
+│   ├── __pycache__/
+│   │   └── main.cpython-311.pyc
+│   ├── api/
+│   │   └── v1/
+│   │       ├── __pycache__/
+│   │       ├── auth.py                    # Authentication endpoints
+│   │       ├── food_analysis.py           # Food image analysis API
+│   │       ├── meal_planning.py           # Meal planning API
+│   │       ├── recipe.py                  # Recipe management
+│   │       ├── router.py                  # API router configuration
+│   │       └── shopping.py                # Shopping list generation
+│   ├── core/                              # Core business logic
+│   │   ├── __pycache__/
+│   │   │   ├── config.cpython-311.pyc
+│   │   │   ├── food_analysis.cpython-311.pyc
+│   │   │   ├── generate_recipe.cpython-311.pyc
+│   │   │   ├── meal_agent.cpython-311.pyc
+│   │   │   ├── recipe_utils.cpython-311.pyc
+│   │   │   └── security.cpython-311.pyc
+│   │   ├── config.py                      # Application configuration
+│   │   ├── food_analysis.py               # AI food analysis service
+│   │   ├── generate_recipe.py             # Recipe generation logic
+│   │   ├── meal_agent.py                  # LangChain agent for meal planning
+│   │   ├── recipe_utils.py                # Recipe utilities
+│   │   └── security.py                    # JWT and password security
+│   ├── db/                                # Database configuration
+│   │   ├── __pycache__/
+│   │   │   ├── base.cpython-311.pyc
+│   │   │   └── base.cpython-312.pyc
+│   │   └── base.py
+│   ├── deps/                              # Dependency injection
+│   │   ├── __pycache__/
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   └── auth.cpython-311.pyc
+│   │   ├── __init__.py
+│   │   └── auth.py
+│   ├── domains/                           # Domain models and services
+│   │   ├── meals/                         # Meal domain logic
+│   │   │   ├── __pycache__/
+│   │   │   ├── schemas.py
+│   │   │   └── service.py
+│   │   └── users/                         # User management
+│   │       ├── __pycache__/
+│   │       ├── models.py
+│   │       ├── repo.py
+│   │       ├── schemas.py
+│   │       └── service.py
+│   └── main.py                            # FastAPI application entry point
+├── .env                                   # Environment variables
+├── .gitignore                             # Git ignore rules
+└── create_db.py                           # Database initialization
 ```
 
 ### Frontend (React + TypeScript)
+
 ```
-apps/web/
+web/
+├── node_modules/                          # Dependencies
+├── public/                                # Static assets
 ├── src/
-│   ├── components/       # Reusable UI components
-│   │   ├── ui/          # shadcn/ui components
-│   │   └── layout/      # Layout components
-│   ├── pages/           # Route components
-│   │   ├── Auth.tsx     # Authentication
-│   │   ├── Chat.tsx     # AI meal planning chat
-│   │   ├── Calendar.tsx # Meal plan calendar
-│   │   ├── FoodAnalysis.tsx # Food image analysis
-│   │   └── ShoppingList.tsx # Shopping list
-│   ├── store/           # Redux state management
-│   │   └── slices/      # Redux slices
-│   ├── lib/             # Utility functions
-│   └── hooks/           # Custom React hooks
-└── package.json
+│   ├── assets/                            # Media assets
+│   │   ├── meal-1.jpg
+│   │   ├── meal-2.jpg
+│   │   ├── meal-3.jpg
+│   │   └── meal-4.jpg
+│   ├── components/                        # Reusable UI components
+│   │   ├── layout/                        # Layout components
+│   │   │   ├── AuthInitializer.tsx        # Authentication initializer
+│   │   │   ├── Navbar.tsx                 # Navigation bar
+│   │   │   ├── ProtectedRoute.tsx         # Route protection
+│   │   │   └── ThemeProvider.tsx          # Theme management
+│   │   └── ui/                            # shadcn/ui components
+│   │       ├── accordion.tsx
+│   │       ├── alert-dialog.tsx
+│   │       ├── alert.tsx
+│   │       ├── aspect-ratio.tsx
+│   │       ├── avatar.tsx
+│   │       ├── background-slider.tsx
+│   │       ├── badge.tsx
+│   │       ├── breadcrumb.tsx
+│   │       ├── button.tsx
+│   │       ├── calendar.tsx
+│   │       ├── card.tsx
+│   │       ├── carousel.tsx
+│   │       ├── chart.tsx
+│   │       ├── checkbox.tsx
+│   │       ├── collapsible.tsx
+│   │       ├── command.tsx
+│   │       ├── context-menu.tsx
+│   │       ├── dialog.tsx
+│   │       ├── drawer.tsx
+│   │       ├── dropdown-menu.tsx
+│   │       ├── form.tsx
+│   │       ├── hover-card.tsx
+│   │       ├── input-otp.tsx
+│   │       ├── input.tsx
+│   │       ├── label.tsx
+│   │       ├── menubar.tsx
+│   │       ├── navigation-menu.tsx
+│   │       ├── pagination.tsx
+│   │       ├── popover.tsx
+│   │       ├── progress.tsx
+│   │       ├── radio-group.tsx
+│   │       ├── resizable.tsx
+│   │       ├── scroll-area.tsx
+│   │       ├── select.tsx
+│   │       ├── separator.tsx
+│   │       ├── sheet.tsx
+│   │       ├── sidebar.tsx
+│   │       ├── skeleton.tsx
+│   │       ├── slider.tsx
+│   │       ├── sonner.tsx
+│   │       ├── switch.tsx
+│   │       ├── table.tsx
+│   │       ├── tabs.tsx
+│   │       ├── textarea.tsx
+│   │       ├── theme-toggle.tsx
+│   │       ├── toast.tsx
+│   │       ├── toaster.tsx
+│   │       ├── toggle-group.tsx
+│   │       ├── toggle.tsx
+│   │       ├── tooltip.tsx
+│   │       └── use-toast.ts
+│   ├── hooks/                             # Custom React hooks
+│   │   ├── use-mobile.tsx
+│   │   └── use-toast.ts
+│   ├── lib/                               # Utility functions
+│   │   ├── api.ts                         # API client
+│   │   ├── auth.ts                        # Authentication utilities
+│   │   └── utils.ts                       # General utilities
+│   ├── pages/                             # Route components
+│   │   ├── About.tsx                      # About page
+│   │   ├── Auth.tsx                       # Authentication
+│   │   ├── Blogs.tsx                      # Blog listings
+│   │   ├── Calendar.tsx                   # Meal plan calendar
+│   │   ├── Chat.tsx                       # AI meal planning chat
+│   │   ├── FoodAnalysis.tsx               # Food image analysis
+│   │   ├── Index.tsx                      # Dashboard/Index
+│   │   ├── Landing.tsx                    # Landing page
+│   │   ├── MealDetails.tsx                # Meal detail view
+│   │   ├── MealRecipe.tsx                 # Meal recipe view
+│   │   ├── NotFound.tsx                   # 404 page
+│   │   ├── Onboarding.tsx                 # User onboarding
+│   │   ├── RecipeDetails.tsx              # Recipe details
+│   │   └── ShoppingList.tsx               # Shopping list
+│   ├── store/                             # Redux state management
+│   │   ├── slices/                        # Redux slices
+│   │   │   ├── authSlice.ts               # Authentication state
+│   │   │   ├── calendarSlice.ts           # Calendar state
+│   │   │   ├── chatSlice.ts               # Chat state
+│   │   │   ├── mealPlansSlice.ts          # Meal plans state
+│   │   │   ├── mealSlice.ts               # Meal state
+│   │   │   └── userSlice.ts               # User state
+│   │   ├── hooks.ts                       # Redux hooks
+│   │   └── store.ts                       # Store configuration
+│   ├── App.css                            # App styles
+│   ├── App.tsx                            # Main App component
+│   ├── index.css                          # Global styles
+│   ├── main.tsx                           # Application entry point
+│   └── vite-env.d.ts                      # Vite type definitions
+├── .env                                   # Environment variables
+├── .gitignore                             # Git ignore rules
+├── aku.txt                                # Additional file
+├── bun.lockb                              # Bun lockfile
+├── components.json                        # shadcn/ui configuration
+├── eslint.config.js                       # ESLint configuration
+├── index.html                             # HTML template
+├── package-lock.json                      # npm lockfile
+├── package.json                           # Package configuration
+├── postcss.config.js                      # PostCSS configuration
+├── README.md                              # Project documentation
+├── tailwind.config.ts                     # Tailwind configuration
+├── tsconfig.app.json                      # TypeScript config (app)
+├── tsconfig.json                          # TypeScript configuration
+├── tsconfig.node.json                     # TypeScript config (node)
+└── vite.config.ts                         # Vite configuration
 ```
 
 ## 🚀 Tech Stack
@@ -311,14 +451,6 @@ npm run build
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Authors
-
-- **Abdullah Ahmad Arslan** - *Full Stack Developer* - [@abdullahahmadarslan](https://github.com/abdullahahmadarslan)
-
 ## 🙏 Acknowledgments
 
 - OpenAI for GPT-4o API
@@ -327,12 +459,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Hugging Face for BLIP models
 - shadcn/ui for beautiful UI components
 - LangChain for agent framework
-
----
-
-<div align="center">
-  <p>Made with ❤️ by Abdullah Ahmad Arslan</p>
-  <p>
-    <a href="#top">⬆️ Back to Top</a>
-  </p>
-</div>
