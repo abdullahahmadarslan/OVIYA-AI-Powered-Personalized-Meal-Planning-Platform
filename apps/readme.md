@@ -1,6 +1,6 @@
 # Project Overview
 
-This is a full-stack application designed for meal planning and nutrition analysis. It consists of a React-based web frontend and a Python FastAPI backend. The application leverages AI, specifically OpenAI's GPT-4o model, to generate personalized meal plans and shopping lists.
+This is a full-stack application designed for meal planning and nutrition analysis. It consists of a React-based web frontend and a Python FastAPI backend. The application leverages agentic AI, specifically OpenAI's GPT-4o model, to generate personalized meal plans and shopping lists.
 
 **Frontend (web):**
 
@@ -15,7 +15,7 @@ This is a full-stack application designed for meal planning and nutrition analys
 *   **Framework:** FastAPI
 *   **Language:** Python
 *   **AI:** OpenAI GPT-4o for meal planning and shopping list generation.
-*   **Database:** Not explicitly defined, but likely a relational database given the use of SQLAlchemy (inferred from `api/app/db/base.py`).
+*   **Database:** Postgre SQL
 
 # Building and Running
 
@@ -43,12 +43,10 @@ To run the backend server:
 
 ```bash
 cd api
-# It is unclear what package manager is used. Assuming pip.
 pip install -r requirements.txt 
 uvicorn app.main:app --reload
 ```
 
-**TODO:** The backend dependencies are not explicitly listed in a `requirements.txt` file. This file should be created to ensure consistent and reproducible builds. The exact command to install dependencies might differ depending on the package manager used (e.g., `pip`, `poetry`, `pipenv`).
 
 # Development Conventions
 
